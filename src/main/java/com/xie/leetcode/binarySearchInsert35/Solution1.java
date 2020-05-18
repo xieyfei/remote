@@ -1,4 +1,4 @@
-package com.xie.leetcode.searchInsert35;
+package com.xie.leetcode.binarySearchInsert35;
 
 public class Solution1 {
 
