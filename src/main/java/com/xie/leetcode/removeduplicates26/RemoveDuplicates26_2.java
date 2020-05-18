@@ -1,4 +1,4 @@
-package com.xie.leetcode.removeduplicates;
+package com.xie.leetcode.removeduplicates26;
 
 import java.util.Arrays;
 
