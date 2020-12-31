@@ -67,6 +67,39 @@ public class Sort {
         System.arraycopy(help, 0, arr, left, right - left + 1);
     }
 
+    public static void quickSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    private static void quickSort(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        swap(arr, left + (int)(Math.random() * (right - left + 1)), right);
+        int[] partition = partition(arr, left, right);
+        quickSort(arr, left, partition[0] - 1);
+        quickSort(arr, partition[1] + 1, right);
+    }
+
+    private static int[] partition(int[] arr, int left, int right) {
+        int less = left - 1;
+        int more = right;
+        while (left < more) {
+            if (arr[left] < arr[right]) {
+                swap(arr, ++less, left++);
+            } else if (arr[left] > arr[right]) {
+                swap(arr, --more, left);
+            } else {
+                left++;
+            }
+        }
+        swap(arr, more, right);
+        return new int[] {++less, more};
+    }
+
     private static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
@@ -143,7 +176,8 @@ public class Sort {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            mergeSort(arr1);
+//            mergeSort(arr1);
+            quickSort(arr1);
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
